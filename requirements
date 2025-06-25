@@ -1,0 +1,35 @@
+Interactive Face Mesh  - Python Dependencies
+Core computer vision and machine learning libraries
+Computer Vision
+opencv-python>=4.5.0
+opencv-contrib-python>=4.5.0
+MediaPipe for face detection and segmentation
+mediapipe>=0.8.10
+Numerical computing
+numpy>=1.21.0
+Optional GUI enhancements
+Uncomment if you want enhanced GUI features
+PyQt5>=5.15.0
+tkinter  # Usually included with Python
+Development and testing dependencies
+Uncomment for development work
+pytest>=6.0.0
+pytest-cov>=2.12.0
+black>=21.0.0
+flake8>=3.9.0
+mypy>=0.910
+Performance optimization (optional)
+Uncomment for performance improvements
+numba>=0.54.0
+scipy>=1.7.0
+Image format support (optional)
+Uncomment for additional image format support
+Pillow>=8.3.0
+Visualization and debugging (optional)
+Uncomment for enhanced visualization
+matplotlib>=3.4.0
+seaborn>=0.11.0
+Configuration management (optional)
+Uncomment for advanced configuration features
+pyyaml>=5.4.0
+configparser>=5.0.0
