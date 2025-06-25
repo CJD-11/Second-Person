@@ -1,0 +1,262 @@
+"""
+Configuration Module for Interactive Face Mesh 
+
+Centralized configuration management with support for file-based configs,
+environment variables, and runtime parameter adjustment.
+
+Author: Corey Dziadzio
+Email: coreydziadzio@c11visualarts.com
+GitHub: https://github.com/CJD-11
+
+"""
+
+import json
+import os
+from typing import Tuple, Optional, Dict, Any
+from dataclasses import dataclass, asdict
+
+
+@dataclass
+class Config:
+    """
+    Configuration class for Interactive Face Mesh Reality application.
+    
+    Contains all configurable parameters with sensible defaults and
+    validation support.
+    """
+    
+    # Camera Configuration
+    camera_index: int = 0
+    camera_width: int = 640
+    camera_height: int = 480
+    camera_fps: int = 30
+    
+    # Display Configuration
+    standard_window_size: Tuple[int, int] = (900, 1200)
+    fullscreen_mode: bool = False
+    show_debug: bool = False
+    window_title: str = "Interactive Face Mesh Reality"
+    
+    # Face Detection Configuration
+    face_detection_confidence: float = 0.5
+    face_tracking_confidence: float = 0.5
+    max_num_faces: int = 1
+    
+    # Movement and Interaction
+    movement_delay: float = 1.0  # seconds
+    movement_amplification: float = 2.0
+    movement_smoothing: bool = True
+    movement_queue_max_size: int = 100
+    
+    # Image Processing Effects
+    pixel_size: int = 12
+    edge_threshold_low: int = 50
+    edge_threshold_high: int = 150
+    color_noise_intensity: int = 20
+    blur_kernel_size: Tuple[int, int] = (11, 11)
+    
+    # Visual Effects
+    mesh_line_thickness: int = 1
+    mesh_point_radius: int = 1
+    mesh_color_bgr: Tuple[int, int, int] = (0, 0, 255)  # Red
+    ghost_mesh_color_bgr: Tuple[int, int, int] = (255, 255, 255)  # White
+    
+    # Polygon Selection
+    polygon_point_color: Tuple[int, int, int] = (0, 0, 255)  # Red
+    polygon_line_color: Tuple[int, int, int] = (0, 255, 0)   # Green
+    polygon_temp_color: Tuple[int, int, int] = (255, 0, 0)   # Blue
+    polygon_point_radius: int = 5
+    polygon_line_thickness: int = 2
+    
+    # Performance Settings
+    target_fps: int = 30
+    max_processing_time: float = 0.033  # ~30 FPS
+    enable_performance_monitoring: bool = True
+    
+    # File Paths
+    default_assets_path: str = "assets"
+    default_output_path: str = "output"
+    config_file_path: Optional[str] = None
+    
+    # Advanced Features
+    enable_recording: bool = False
+    recording_codec: str = "XVID"
+    recording_fps: int = 30
+    auto_save_polygons: bool = True
+    
+    def __post_init__(self):
+        """Validate configuration after initialization."""
+        self.validate()
+    
+    def validate(self) -> bool:
+        """
+        Validate configuration parameters.
+        
+        Returns:
+            bool: True if configuration is valid
+            
+        Raises:
+            ValueError: If configuration parameters are invalid
+        """
+        # Validate camera settings
+        if self.camera_index < 0:
+            raise ValueError("Camera index must be non-negative")
+        
+        if self.camera_width <= 0 or self.camera_height <= 0:
+            raise ValueError("Camera dimensions must be positive")
+        
+        if self.camera_fps <= 0 or self.camera_fps > 120:
+            raise ValueError("Camera FPS must be between 1 and 120")
+        
+        # Validate display settings
+        if any(dim <= 0 for dim in self.standard_window_size):
+            raise ValueError("Window dimensions must be positive")
+        
+        # Validate face detection settings
+        if not (0.0 <= self.face_detection_confidence <= 1.0):
+            raise ValueError("Face detection confidence must be between 0.0 and 1.0")
+        
+        if not (0.0 <= self.face_tracking_confidence <= 1.0):
+            raise ValueError("Face tracking confidence must be between 0.0 and 1.0")
+        
+        # Validate movement settings
+        if self.movement_delay < 0:
+            raise ValueError("Movement delay must be non-negative")
+        
+        if self.movement_amplification <= 0:
+            raise ValueError("Movement amplification must be positive")
+        
+        # Validate image processing settings
+        if self.pixel_size <= 0:
+            raise ValueError("Pixel size must be positive")
+        
+        if self.edge_threshold_low >= self.edge_threshold_high:
+            raise ValueError("Edge threshold low must be less than high")
+        
+        if self.color_noise_intensity < 0:
+            raise ValueError("Color noise intensity must be non-negative")
+        
+        # Validate blur kernel size
+        if any(dim <= 0 or dim % 2 == 0 for dim in self.blur_kernel_size):
+            raise ValueError("Blur kernel dimensions must be positive and odd")
+        
+        return True
+    
+    def update_from_dict(self, config_dict: Dict[str, Any]):
+        """
+        Update configuration from dictionary.
+        
+        Args:
+            config_dict: Dictionary containing configuration updates
+        """
+        for key, value in config_dict.items():
+            if hasattr(self, key):
+                # Handle tuple conversion for certain fields
+                if key in ['standard_window_size', 'blur_kernel_size'] and isinstance(value, list):
+                    value = tuple(value)
+                elif key in ['polygon_point_color', 'polygon_line_color', 'polygon_temp_color',
+                           'mesh_color_bgr', 'ghost_mesh_color_bgr'] and isinstance(value, list):
+                    value = tuple(value)
+                
+                setattr(self, key, value)
+            else:
+                print(f"Warning: Unknown configuration key '{key}' ignored")
+        
+        self.validate()
+    
+    def save_to_file(self, file_path: str):
+        """
+        Save configuration to JSON file.
+        
+        Args:
+            file_path: Path to save configuration file
+        """
+        try:
+            config_dict = asdict(self)
+            
+            # Create directory if it doesn't exist
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
+            
+            with open(file_path, 'w') as f:
+                json.dump(config_dict, f, indent=2)
+            
+            print(f"Configuration saved to {file_path}")
+            
+        except Exception as e:
+            print(f"Error saving configuration: {e}")
+    
+    @classmethod
+    def load_from_file(cls, file_path: str) -> 'Config':
+        """
+        Load configuration from JSON file.
+        
+        Args:
+            file_path: Path to configuration file
+            
+        Returns:
+            Config: Configuration instance loaded from file
+        """
+        try:
+            with open(file_path, 'r') as f:
+                config_dict = json.load(f)
+            
+            # Create default config and update with loaded values
+            config = cls()
+            config.update_from_dict(config_dict)
+            config.config_file_path = file_path
+            
+            print(f"Configuration loaded from {file_path}")
+            return config
+            
+        except FileNotFoundError:
+            print(f"Configuration file not found: {file_path}")
+            print("Using default configuration")
+            return cls()
+        except Exception as e:
+            print(f"Error loading configuration: {e}")
+            print("Using default configuration")
+            return cls()
+    
+    def load_from_environment(self):
+        """Load configuration values from environment variables."""
+        env_mappings = {
+            'FACE_MESH_CAMERA_INDEX': ('camera_index', int),
+            'FACE_MESH_CAMERA_WIDTH': ('camera_width', int),
+            'FACE_MESH_CAMERA_HEIGHT': ('camera_height', int),
+            'FACE_MESH_FULLSCREEN': ('fullscreen_mode', lambda x: x.lower() == 'true'),
+            'FACE_MESH_DEBUG': ('show_debug', lambda x: x.lower() == 'true'),
+            'FACE_MESH_MOVEMENT_DELAY': ('movement_delay', float),
+            'FACE_MESH_MOVEMENT_AMP': ('movement_amplification', float),
+            'FACE_MESH_FACE_CONFIDENCE': ('face_detection_confidence', float),
+            'FACE_MESH_PIXEL_SIZE': ('pixel_size', int),
+            'FACE_MESH_NOISE_INTENSITY': ('color_noise_intensity', int),
+        }
+        
+        for env_var, (config_attr, converter) in env_mappings.items():
+            env_value = os.getenv(env_var)
+            if env_value is not None:
+                try:
+                    converted_value = converter(env_value)
+                    setattr(self, config_attr, converted_value)
+                    print(f"Loaded {config_attr} = {converted_value} from environment")
+                except ValueError as e:
+                    print(f"Warning: Invalid environment variable {env_var}={env_value}: {e}")
+    
+    def get_camera_config(self) -> Dict[str, Any]:
+        """Get camera-specific configuration."""
+        return {
+            'index': self.camera_index,
+            'width': self.camera_width,
+            'height': self.camera_height,
+            'fps': self.camera_fps
+        }
+    
+    def get_face_detection_config(self) -> Dict[str, Any]:
+        """Get face detection configuration."""
+        return {
+            'min_detection_confidence': self.face_detection_confidence,
+            'min_tracking_confidence': self.face_tracking_confidence,
+            'max_num_faces': self.max_num_faces
+        }
+    
+    def get_image_
