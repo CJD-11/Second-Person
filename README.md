@@ -5,7 +5,6 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.5+-green.svg)](https://opencv.org/)
 [![MediaPipe](https://img.shields.io/badge/MediaPipe-Latest-orange.svg)](https://mediapipe.dev/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ###  Project Vision
 
@@ -59,48 +58,6 @@ Interactive Face Mesh Reality is a real-time computer vision art installation th
    - Watch as the selected polygon region responds to your movements
    - Press 'q' to exit the application
 
-##  Repository Structure
-
-```
-interactive-face-mesh-reality/
-├── README.md                    # This file
-├── requirements.txt             # Python dependencies
-├── setup.py                     # Package installation
-├── .gitignore                   # Git ignore patterns
-├── src/
-│   ├── __init__.py             # Package initialization
-│   ├── face_mesh_reality.py    # Main application
-│   ├── polygon_selector.py     # Interactive polygon selection
-│   ├── face_tracker.py         # Face tracking utilities
-│   ├── image_processor.py      # Image processing effects
-│   ├── config.py               # Configuration settings
-│   └── utils/
-│       ├── __init__.py
-│       ├── camera_utils.py     # Camera management
-│       ├── display_utils.py    # Display helpers
-│       └── math_utils.py       # Mathematical operations
-├── assets/
-│   ├── sample_reference.jpg    # Sample reference image
-│   └── README.md              # Asset documentation
-├── examples/
-│   ├── basic_usage.py          # Simple usage example
-│   ├── custom_effects.py       # Advanced effects demo
-│   └── calibration.py          # Camera calibration
-├── tests/
-│   ├── test_face_tracker.py    # Face tracking tests
-│   ├── test_image_processor.py # Image processing tests
-│   └── test_polygon_selector.py # Polygon selection tests
-├── docs/
-│   ├── installation.md         # Detailed installation guide
-│   ├── user_guide.md          # Complete user manual
-│   ├── api_reference.md       # API documentation
-│   ├── troubleshooting.md     # Common issues and solutions
-│   └── artistic_vision.md     # Creative concept documentation
-└── scripts/
-    ├── setup_environment.sh    # Environment setup script
-    ├── download_models.py      # Model download utility
-    └── performance_test.py     # Performance benchmarking
-```
 
 ##  Core Features
 
