@@ -1,0 +1,98 @@
+# KEY REFERENCES
+## Second Person: A Digital Interface for Displaced Embodiment
+
+### Core Theoretical Framework
+
+**Embodied Cognition & Phenomenology**
+- Varela, F. J., Thompson, E., & Rosch, E. (1991). *The Embodied Mind: Cognitive Science and Human Experience*. MIT Press.
+- Merleau-Ponty, M. (1945). *Phenomenology of Perception*. Routledge.
+- Clark, A., & Chalmers, D. (1998). The extended mind. *Analysis*, 58(1), 7-19.
+
+**Embodied Interaction & HCI**
+- Dourish, P. (2001). *Where the Action Is: The Foundations of Embodied Interaction*. MIT Press.
+- Robertson, T. (2002). The public availability of actions and artefacts. *Computer Supported Cooperative Work*, 11(3), 299-316.
+
+**Digital Identity & Posthuman Studies**
+- Hayles, N. K. (1999). *How We Became Posthuman: Virtual Bodies in Cybernetics, Literature, and Informatics*. University of Chicago Press.
+- Turkle, S. (2011). *Alone Together: Why We Expect More from Technology and Less from Each Other*. Basic Books.
+
+### Computer Vision & Gaze Tracking
+
+**OpenCV Framework**
+- Bradski, G. (2000). The OpenCV library. *Dr. Dobb's Journal of Software Tools*, 25(11), 120-125.
+- OpenCV Team. (2023). *OpenCV 4.8 Documentation*. Intel Corporation.
+
+**Facial Landmark Detection**
+- Kazemi, V., & Sullivan, J. (2014). One millisecond face alignment with an ensemble of regression trees. *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition*, 1867-1874.
+- Dlib C++ Library. (2023). *Facial Landmark Detection*. http://dlib.net/
+
+**Real-Time Gaze Estimation**
+- Zhang, X., et al. (2015). Appearance-based gaze estimation in the wild. *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition*, 4511-4520.
+- Krafka, K., et al. (2016). Eye tracking for everyone. *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition*, 2176-2184.
+
+### 3D Graphics & Avatar Synthesis
+
+**Real-Time Rendering**
+- Möller, T., Haines, E., & Hoffman, N. (2018). *Real-Time Rendering* (4th ed.). CRC Press.
+- NVIDIA Corporation. (2023). *RTX Real-Time Ray Tracing Developer Guide*. NVIDIA Developer Documentation.
+
+**Open3D Framework**
+- Zhou, Q. Y., Park, J., & Koltun, V. (2018). Open3D: A modern library for 3D data processing. *arXiv preprint arXiv:1801.09847*.
+
+**Deep Learning for Computer Vision**
+- Paszke, A., et al. (2019). PyTorch: An imperative style, high-performance deep learning library. *Advances in Neural Information Processing Systems*, 32, 8026-8037.
+
+### Embodiment & Virtual Reality Research
+
+**Presence & Embodiment**
+- Slater, M., & Wilbur, S. (1997). A framework for immersive virtual environments (FIVE): Speculations on the role of presence in virtual environments. *Presence: Teleoperators & Virtual Environments*, 6(6), 603-616.
+- Kilteni, K., Groten, R., & Slater, M. (2012). The sense of embodiment in virtual reality. *Presence: Teleoperators & Virtual Environments*, 21(4), 373-387.
+
+**Avatar Embodiment**
+- Yee, N., & Bailenson, J. (2007). The Proteus effect: The effect of transformed self-representation on behavior. *Human Communication Research*, 33(3), 271-290.
+- Gonzalez-Franco, M., & Peck, T. C. (2018). Avatar embodiment: Towards a standardized questionnaire. *Frontiers in Robotics and AI*, 5, 74.
+
+### Digital Identity & Media Theory
+
+**Technology & Subjectivity**
+- Braidotti, R. (2013). *The Posthuman*. Polity Press.
+- Haraway, D. (1985). A cyborg manifesto: Science, technology, and socialist-feminism in the late twentieth century. *Socialist Review*, 65-107.
+
+**Human-Computer Symbiosis**
+- Licklider, J. C. R. (1960). Man-computer symbiosis. *IRE Transactions on Human Factors in Electronics*, 1(1), 4-11.
+- Engelbart, D. C. (1962). Augmenting human intellect: A conceptual framework. Stanford Research Institute.
+
+### Research Methodology
+
+**Qualitative HCI Research**
+- Lazar, J., Feng, J. H., & Hochheiser, H. (2017). *Research Methods in Human-Computer Interaction* (2nd ed.). Morgan Kaufmann.
+- Denzin, N. K., & Lincoln, Y. S. (2017). *The SAGE Handbook of Qualitative Research* (5th ed.). SAGE Publications.
+
+**Video Analysis Methods**
+- Heath, C., Hindmarsh, J., & Luff, P. (2010). *Video in Qualitative Research*. SAGE Publications.
+
+### Open Source & Reproducible Research
+
+**Open Source Software Development**
+- Raymond, E. S. (1999). *The Cathedral and the Bazaar: Musings on Linux and Open Source by an Accidental Revolutionary*. O'Reilly Media.
+
+**Computational Reproducibility**
+- Peng, R. D. (2011). Reproducible research in computational science. *Science*, 334(6060), 1226-1227.
+- Stodden, V., & Miguez, S. (2014). Best practices for computational science: Software infrastructure and environments for reproducible and extensible research. *Journal of Open Research Software*, 2(1), e21.
+
+### Therapeutic Applications
+
+**Digital Therapeutics**
+- Riva, G., Wiederhold, B. K., & Mantovani, F. (2019). Neuroscience of virtual reality: From virtual exposure to embodied medicine. *Cyberpsychology, Behavior, and Social Networking*, 22(1), 82-96.
+
+**Embodiment Therapy**
+- Fuchs, T. (2016). Intercorporeality and interaffectivity. *Phenomenology and Mind*, 11, 194-209.
+
+---
+
+## Citation Notes
+
+- Citations follow APA 7th edition format
+- Complete system implementation and documentation available at: https://github.com/CJD-11/Second-Person
+- All software dependencies use open-source licenses for research reproducibility
+- Research conducted independently focusing on embodied cognition and digital identity formation
